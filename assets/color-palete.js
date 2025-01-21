@@ -1,6 +1,15 @@
+function toggleMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden');
+}
+
 function doGenerate() {
+    const loader = document.getElementById('loader');
     loader.style.display = 'none';
+
+    const uploadedImage = document.getElementById('uploadedImage');
     uploadedImage.src = '';
+
     const url = getRandomImage();
     uploadedImage.src = url;
     generateColorPaletteUrl(url);
@@ -25,10 +34,18 @@ function getRandomImage() {
 }
 
 function doUpload() {
+    const fileInput = document.getElementById('imageInput');
+    const selectedFile = fileInput.files[0];
+
     if (selectedFile) {
-        uploadedImage.style.opacity = '0';
-        colorPalette.style.opacity = '0';
+        const loader = document.getElementById('loader');
         loader.style.display = 'block';
+
+        const uploadedImage = document.getElementById('uploadedImage');
+        uploadedImage.style.opacity = '0';
+
+        const colorPalette = document.getElementById('colorPalette');
+        colorPalette.style.opacity = '0';
         colorPalette.innerHTML = '';
 
         const reader = new FileReader();
@@ -54,15 +71,25 @@ function generateColorPalette(image) {
         }
     }
 
+    const uploadedImage = document.getElementById('uploadedImage');
     uploadedImage.style.opacity = '1';
+
+    const colorPalette = document.getElementById('colorPalette');
     colorPalette.style.opacity = '1';
+
+    const loader = document.getElementById('loader');
     loader.style.display = 'none';
 }
 
 async function generateColorPaletteUrl(url) {
-    uploadedImage.style.opacity = '0';
-    colorPalette.style.opacity = '0';
+    const loader = document.getElementById('loader');
     loader.style.display = 'block';
+
+    const uploadedImage = document.getElementById('uploadedImage');
+    uploadedImage.style.opacity = '0';
+
+    const colorPalette = document.getElementById('colorPalette');
+    colorPalette.style.opacity = '0';
     colorPalette.innerHTML = '';
 
     const img = new Image();

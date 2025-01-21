@@ -30,10 +30,12 @@
     <meta name="msapplication-TileColor" content="#000000">
 
     <!-- Styles -->
-    <link href="tailwind.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <script src="script.js"></script>
-    <script src="vibrant.min.js"></script>
+    <link href="assets/tailwind.min.css" rel="stylesheet">
+    <link href="assets/style.css" rel="stylesheet">
+
+    <!-- Script -->
+    <script src="assets/color-palete.js"></script>
+    <script src="assets/vibrant.min.js"></script>
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -54,10 +56,40 @@
 </head>
 
 <body>
-    <div class="container mx-auto p-4 md:py-48">
+    <h1 class="hidden">Cerah.Net</h1>
+    <nav class="bg-gray-50 p-4 shadow-lg">
+        <div class="max-w-7xl lg:px-4 mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="text-2xl font-bold hover:text-blue-800">Cerah.Net</a>
+    
+            <!-- Menu items -->
+            <div class="hidden lg:flex space-x-6">
+                <a href="/" class="text-blue-800 font-bold">Color Palette Generator</a>
+                <a href="/favicon-generator" class="hover:text-blue-800">Favicon Generator</a>
+            </div>
+    
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button onclick="toggleMenu()" class="text-gray-800 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Mobile menu items -->
+        <div id="mobile-menu" class="lg:hidden hidden mt-2 w-full">
+            <a href="/" class="block text-blue-800 py-2 font-bold">Color Palette Generator</a>
+            <a href="favicon-generator" class="block hover:text-blue-800 py-2">Favicon Generator</a>
+        </div>
+    </nav>
+    <div class="max-w-7xl mx-auto p-4 md:p-8 md:py-32 mt-5">
         <div class="lg:flex md:gap-10">
             <div class="lg:w-1/2 mb-10">
-                <h1 class="text-2xl mb-3">Cerah.Net</h1>
+                <h2 class="text-2xl mb-3">Generator Image to Color Palete</h2>
                 <h2 class="text-4xl mb-10">Cara Super Mudah untuk Dapatkan Warna dari Foto Favoritmu!</h2>
                 <p class="mb-7">Mau punya skema warna yang pas banget dengan gambar kesukaan? Pakai aja generator palet
                     warna Cerah! Cukup unggah foto, dan dalam sekejap, kita bakal bikin kombinasi warna keren yang pas
@@ -65,10 +97,10 @@
                 <form>
                     <input type="file" id="imageInput" accept="image/*"
                         class="mb-4 p-2 border rounded-md w-full hover:border-blue-300">
-                    <button type="button" id="uploadButton"
+                    <button type="button" id="uploadButton" onclick="doUpload()"
                         class="bg-blue-800 hover:bg-opacity-70 text-white p-3 font-bold rounded-md w-full">Upload
                         Gambar</button>
-                    <button type="button" id="generateButton"
+                    <button type="button" id="generateButton" onclick="doGenerate()"
                         class="hover:bg-gray-300 p-2 mt-4 rounded-md w-full border border-gray-400 text-sm">Coba
                         Sample</button>
                 </form>
@@ -76,37 +108,23 @@
             <div class="lg:w-1/2">
                 <div class="rounded-md">
                     <div id="loader"></div>
-                    <img id="uploadedImage" alt="Contoh gambar yang diunggah untuk menghasilkan palet warna"
-                        class="rounded-t-lg border-gray-300 w-full">
+                    <div style="max-height: 400px; overflow:hidden">
+                        <img id="uploadedImage" alt="Contoh gambar yang diunggah untuk menghasilkan palet warna"
+                            class="rounded-t-lg border-gray-300 w-full">
+                    </div>
                     <div id="colorPalette" class="flex rounded-b-lg"></div>
                 </div>
             </div>
         </div>
         <!-- .flex -->
     </div>
-    <!-- .container -->
+    <!-- .wrapper -->
+
+    <footer class="bg-gray-50 border-t border-gray-200 text-center text-xs text-gray-500 p-6 fixed bottom-0 w-full">
+        <p>© 2025 Made with Love by Cerah.Net</p>
+    </footer>
 
     <script>
-        const imageInput = document.getElementById('imageInput');
-        const uploadButton = document.getElementById('uploadButton');
-        const generateButton = document.getElementById('generateButton');
-        const uploadedImage = document.getElementById('uploadedImage');
-        const colorPalette = document.getElementById('colorPalette');
-        const loader = document.getElementById('loader');
-        let selectedFile;
-
-        imageInput.addEventListener('change', function (event) {
-            selectedFile = event.target.files[0];
-        });
-
-        uploadButton.addEventListener('click', function () {
-            doUpload();
-        });
-
-        generateButton.addEventListener('click', function () {
-            doGenerate();
-        });
-
         doGenerate();
     </script>
 </body>
