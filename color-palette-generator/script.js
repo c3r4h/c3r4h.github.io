@@ -1,8 +1,3 @@
-function toggleMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-}
-
 function doGenerate() {
     const loader = document.getElementById('loader');
     loader.style.display = 'none';

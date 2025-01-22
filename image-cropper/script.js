@@ -1,0 +1,81 @@
+let cropper;
+
+function onImageUpload() {
+    const imageDefault = document.getElementById('imageDefault');
+    imageDefault.style.display = 'none';
+    
+    const loader = document.getElementById('loader');
+    loader.style.display = 'block';
+
+    const fileInput = document.getElementById('uploadImage');
+    const file = fileInput.files[0];
+
+    const imageElement = document.getElementById('image');
+
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imageElement.src = e.target.result;
+            imageElement.onload = function () {
+                initializeCropper();
+                loader.style.display = 'none';
+            };
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function initializeCropper() {
+    const imageElement = document.getElementById('image');
+    const result = document.getElementById('result');
+
+    if (cropper) {
+        cropper.destroy();
+    }
+
+    cropper = new Cropper(imageElement, {
+        viewMode: 1,
+        movable: true,
+        scalable: true,
+        zoomable: true,
+        cropBoxResizable: true,
+        aspectRatio: null // Default free
+    });
+
+    result.style.display = 'inline-block';
+}
+
+function setSquareCrop() {
+    if (cropper) {
+        cropper.setAspectRatio(1);
+    }
+}
+
+function setFreeCrop() {
+    if (cropper) {
+        cropper.setAspectRatio(NaN);
+    }
+}
+
+function downloadCroppedImage() {
+    const canvas = cropper.getCroppedCanvas();
+    const croppedImage = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = croppedImage;
+    link.download = "cropped-image." + generateFileName() + ".png";
+    link.click();
+}
+
+function generateFileName() {
+    const now = new Date();
+
+    // Format: YYYY-MM-DD_HH-MM-SS
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    return `${year}${month}${day}${hours}${minutes}${seconds}`;
+}
