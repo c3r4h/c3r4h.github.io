@@ -1,4 +1,4 @@
-function doGenerate() {
+async function doGenerate() {
     const loader = document.getElementById('loader');
     loader.style.display = 'none';
 
@@ -9,6 +9,8 @@ function doGenerate() {
     uploadedImage.src = url;
     generateColorPaletteUrl(url);
 }
+
+doGenerate();
 
 function getRandomImage() {
     const urlArray = [
@@ -28,7 +30,7 @@ function getRandomImage() {
     return "https://images.unsplash.com/photo-" + urlArray[randomIndex] + "?w=800&h=550&auto=format&fit=crop&q=60";
 }
 
-function doUpload() {
+async function doUpload() {
     const fileInput = document.getElementById('imageInput');
     const selectedFile = fileInput.files[0];
 
@@ -56,7 +58,7 @@ function doUpload() {
     }
 }
 
-function generateColorPalette(image) {
+async function generateColorPalette(image) {
     const vibrant = new Vibrant(image);
     var swatches = vibrant.swatches();
     for (var swatch in swatches) {
@@ -109,7 +111,7 @@ async function generateColorPaletteUrl(url) {
     };
 }
 
-function generateColorBox(color) {
+async function generateColorBox(color) {
     var colorBox = document.createElement('div');
     colorBox.className = 'color-box flex-1 flex items-center justify-center text-white text-xs';
     colorBox.style.backgroundColor = color;

@@ -6,7 +6,7 @@ function doCopy() {
     alert('Kode HTML berhasil disalin!');
 };
 
-function doAction() {
+async function doAction() {
     const fileInput = document.getElementById('imageUpload');
     const file = fileInput.files[0];
 
@@ -16,7 +16,7 @@ function doAction() {
             const img = new Image();
             img.onload = function () {
                 const previewDiv = document.getElementById('previewUpload');
-                previewDiv.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image" width="64" height="64" />`;
+                previewDiv.innerHTML = `<img loading="lazy" src="${e.target.result}" alt="Uploaded Image" width="64" height="64" />`;
 
                 const downloadButton = document.getElementById('downloadBtn');
                 downloadButton.style.display = 'block';
@@ -29,7 +29,7 @@ function doAction() {
     }
 }
 
-function createFaviconICO(img, zip, callback) {
+async function createFaviconICO(img, zip, callback) {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     const sizes = [16, 32, 48];
@@ -55,12 +55,12 @@ function createFaviconICO(img, zip, callback) {
     });
 }
 
-function createICOFile(icoImages, zip) {
+async function createICOFile(icoImages, zip) {
     const icoBlob = new Blob(icoImages, { type: 'image/x-icon' });
     zip.file('favicon.ico', icoBlob);
 }
 
-function downloadAllFavicon() {
+async function downloadAllFavicon() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     const appleIconSize = 180;

@@ -43,10 +43,10 @@
     <link href="../assets/style.css" rel="stylesheet">
 
     <!-- Script -->
-    <script src="../assets/script.js"></script>
-    <script src="/favicon-generator/script.js" defer></script>
-    <script src="/favicon-generator/jszip.min.js" defer></script>
-    <script src="/favicon-generator/FileSaver.min.js" defer></script>
+    <script src="../assets/script.js" defer></script>
+    <script src="/favicon-generator/script.js" async></script>
+    <script src="/favicon-generator/jszip.min.js" async></script>
+    <script src="/favicon-generator/FileSaver.min.js" async></script>
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -71,6 +71,7 @@
             }
         }
     </script>
+    <link rel="canonical" href="https://cerah.net" />
 </head>
 
 
@@ -145,6 +146,19 @@
                             style="display: none;">Unduh favicon.zip</button>
                     </div>
                 </div>
+                <div class="social border-t pt-3 mt-10 flex justify-end items-center gap-2">
+                    <div class="fb-share-button mb-1" data-href="https://cerah.net" data-layout="button_count">
+                    </div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0">
+                    </script>
+                
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this awesome page!"
+                        data-url="https://cerah.net">
+                        Tweet
+                    </a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+                <!-- .social -->
             </div>
         </div>
         <!-- flex -->

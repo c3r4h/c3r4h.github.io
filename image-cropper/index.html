@@ -48,9 +48,9 @@
     </style>
 
     <!-- Script -->
-    <script src="../assets/script.js"></script>
-    <script src="/image-cropper/script.js"></script>
-    <script src="/image-cropper/cropper.min.js"></script>
+    <script src="../assets/script.js" defer></script>
+    <script src="/image-cropper/script.js" async></script>
+    <script src="/image-cropper/cropper.min.js" async></script>
     <link href="/image-cropper/cropper.min.css" rel="stylesheet">
 
     <!-- Schema Markup -->
@@ -76,6 +76,7 @@
             }
         }
     </script>
+    <link rel="canonical" href="https://cerah.net" />
 </head>
 
 
@@ -108,8 +109,8 @@
         <!-- Mobile menu items -->
         <div id="mobile-menu" class="lg:hidden hidden mt-2 w-full">
             <a href="/color-palette-generator" class="block hover:text-blue-800 py-2">Color Palette Generator</a>
-            <a href="/favicon-generator" class="block text-blue-800 py-2">Favicon Generator</a>
-            <a href="/image-cropper" class="block hover:text-blue-800 py-2 font-bold">Image Cropper</a>
+            <a href="/favicon-generator" class="block hover:text-blue-800 py-2">Favicon Generator</a>
+            <a href="/image-cropper" class="block text-blue-800 py-2 font-bold">Image Cropper</a>
         </div>
     </nav>
 
@@ -132,10 +133,10 @@
                 </form>
             </div>
             <div class="lg:w-1/2 lg:pt-14">
-                <img id="imageDefault" src="/image-cropper/image.png" alt="Image Cropper" class="rounded-lg" />
+                <img loading="lazy" id="imageDefault" src="/image-cropper/image.png" alt="Image Cropper" class="rounded-lg" />
                 <div id="loader" style="display: none;"></div>
                 <div id="result" style="display: none;">
-                    <img id="image" class="rounded-lg" src="" alt="Gambar" style="max-height:400px;" />
+                    <img loading="lazy" id="image" class="rounded-lg" src="" alt="Gambar" style="max-height:400px;" />
                     <div class="mt-2 text-xs text-gray-500">Gunakan scroll mouse untuk zoom in/out</div>
                     <div class="mt-2 flex justify-between">
                         <div>
@@ -152,6 +153,20 @@
                             onclick="downloadCroppedImage()">Unduh Hasil (.png)
                     </div>
                 </div>
+                <!-- result -->
+                <div class="social border-t pt-3 mt-10 flex justify-end items-center gap-2">
+                    <div class="fb-share-button mb-1" data-href="https://cerah.net" data-layout="button_count">
+                    </div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0">
+                    </script>
+                
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this awesome page!"
+                        data-url="https://cerah.net">
+                        Tweet
+                    </a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+                <!-- .social -->
             </div>
         </div>
 

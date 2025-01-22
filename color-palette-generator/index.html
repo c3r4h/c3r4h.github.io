@@ -39,9 +39,9 @@
     <link href="../assets/style.css" rel="stylesheet">
 
     <!-- Script -->
-    <script src="../assets/script.js"></script>
-    <script src="/color-palette-generator/script.js"></script>
-    <script src="/color-palette-generator/vibrant.min.js"></script>
+    <script src="../assets/script.js" defer></script>
+    <script src="/color-palette-generator/script.js" async></script>
+    <script src="/color-palette-generator/vibrant.min.js" async></script>
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -66,7 +66,7 @@
         }
     }
     </script>
-
+    <link rel="canonical" href="https://cerah.net" />
 </head>
 
 <body>
@@ -126,11 +126,24 @@
                 <div class="rounded-md">
                     <div id="loader"></div>
                     <div style="max-height: 400px; overflow:hidden">
-                        <img id="uploadedImage" alt="Contoh gambar yang diunggah untuk menghasilkan palet warna"
+                        <img loading="lazy" id="uploadedImage" alt="Contoh gambar yang diunggah untuk menghasilkan palet warna"
                             class="rounded-t-lg border-gray-300 w-full">
                     </div>
                     <div id="colorPalette" class="flex rounded-b-lg"></div>
                 </div>
+                <div class="social border-t pt-3 mt-10 flex justify-end items-center gap-2">
+                    <div class="fb-share-button mb-1" data-href="https://cerah.net" data-layout="button_count">
+                    </div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0">
+                    </script>
+                
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this awesome page!"
+                        data-url="https://cerah.net">
+                        Tweet
+                    </a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+                <!-- .social -->
             </div>
         </div>
         <!-- .flex -->
@@ -149,10 +162,6 @@
     <footer class="bg-gray-50 border-t border-gray-200 text-center text-xs text-gray-500 p-6 fixed bottom-0 w-full">
         <p>© 2025 Made with Love by Cerah.Net</p>
     </footer>
-
-    <script>
-        doGenerate();
-    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://googletagmanager.com/gtag/js?id=G-X7WWQ4LVM9"></script>

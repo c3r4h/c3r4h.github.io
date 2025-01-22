@@ -10,15 +10,18 @@ function onImageUpload() {
     const fileInput = document.getElementById('uploadImage');
     const file = fileInput.files[0];
 
+    const result = document.getElementById('result');
     const imageElement = document.getElementById('image');
 
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onload = function (e) {
+            result.style.display = 'block';
+            loader.style.display = 'none';
+            
             imageElement.src = e.target.result;
             imageElement.onload = function () {
                 initializeCropper();
-                loader.style.display = 'none';
             };
         };
         reader.readAsDataURL(file);
@@ -27,7 +30,6 @@ function onImageUpload() {
 
 function initializeCropper() {
     const imageElement = document.getElementById('image');
-    const result = document.getElementById('result');
 
     if (cropper) {
         cropper.destroy();
@@ -41,8 +43,6 @@ function initializeCropper() {
         cropBoxResizable: true,
         aspectRatio: null // Default free
     });
-
-    result.style.display = 'inline-block';
 }
 
 function setSquareCrop() {
